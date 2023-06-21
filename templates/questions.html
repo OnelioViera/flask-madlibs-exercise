@@ -1,114 +1,121 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
 
 <head>
-    <title>Madlibs</title>
-    <link rel="stylesheet" href="/static/app.css">
-    <link rel="stylesheet" href="/static/mdb.min.css">
+  <title>Madlibs</title>
+  <link rel="stylesheet" href="/static/app.css" />
+  <link rel="stylesheet" href="/static/mdb.min.css" />
 </head>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light p-3">
-    <div class="container-fluid justify-content-center">
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item">
-                    <a href="/">Home</a>
-                </li>
+  <div class="container-fluid justify-content-center">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <a href="/">Home</a>
+        </li>
 
-                <li class="breadcrumb-item">
-                    <a href="#">Page 2</a>
-                </li>
-                <li class="breadcrumb-item">
-                    <a href="#"><button type="button" class="btn btn-outline-secondary btn-sm" data-mdb-toggle="modal"
-                            data-mdb-target="#exampleSideModal1">
-                            Mad Libs History
-                        </button></a>
-                </li>
-            </ol>
-        </nav>
-    </div>
+        <li class="breadcrumb-item">
+          <a href="#">Page 2</a>
+        </li>
+        <li class="breadcrumb-item">
+          <a href="#"><button type="button" class="btn btn-outline-secondary btn-sm" data-mdb-toggle="modal"
+              data-mdb-target="#exampleSideModal1">
+              Mad Libs History
+            </button></a>
+        </li>
+      </ol>
+    </nav>
+  </div>
 </nav>
 
 <body id="body-content">
-    <div class="container">
-        <div class="text-center">
-            <img src="/static/mdl_logo.png" class="header-img img-fluid" alt="Madlibs">
+  <div class="container">
+    <div class="question-body">
+      <div class="text-center">
+        <img src="/static/mdl_logo.png" class="header-img img-fluid" alt="Madlibs" />
+      </div>
+
+      <div class="row d-flex align-items-center justify-content-center">
+        <div class="col-md-9">
+          <div class="card">
+            <div class="card-body">
+              <h1 class="card-title"></h1>
+              <form action="/story">
+                {% for prompt in prompts %}
+                <p>
+                  {{ prompt }}:
+                  <input class="m-1" name="{{ prompt }}" />
+                </p>
+                {% endfor %}
+                <button class="btn btn-outline-info btn-sm mt-3">
+                  Submit
+                </button>
+              </form>
+            </div>
+          </div>
         </div>
-        <div class="row d-flex align-items-center justify-content-center">
-            <div class="col-md-4">
+      </div>
+    </div>
+  </div>
 
-                <div class="card">
-                    <div class="card-body">
-                        <h1 class="card-title"></h1>
-                        <form action="/story">
-                            {% for prompt in prompts %}
-                            <p>{{ prompt }}:
-                                <input class="m-1" name="{{ prompt }}">
-                            </p>
-                            {% endfor %}
-                            <button class="btn btn-outline-info btn-sm mt-3">Submit</button>
-                        </form>
 
-                    </div>
-                </div>
+  <!-- Modal example -->
+  <div class="modal fade right" id="exampleSideModal1" tabindex="-1" aria-labelledby="exampleSideModal1"
+    aria-hidden="true">
+    <div class="modal-dialog modal-side modal-top-right">
+      <div class="modal-content">
+        <div class="modal-header bg-info text-white">
+          <h5 class="modal-title" id="exampleSideModal1">
+            The History of Mad Libs
+          </h5>
+
+          <button type="button" class="btn-close btn-close-white" data-mdb-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-3 text-center">
+              <i class="fas fa-shopping-cart fa-4x text-info"></i>
             </div>
 
-        </div>
-    </div>
-
-
-    <!-- Modal example -->
-    <div class="modal fade right" id="exampleSideModal1" tabindex="-1" aria-labelledby="exampleSideModal1"
-        aria-hidden="true">
-        <div class="modal-dialog modal-side modal-top-right">
-            <div class="modal-content">
-                <div class="modal-header bg-info text-white">
-                    <h5 class="modal-title" id="exampleSideModal1">The History of Mad Libs</h5>
-
-                    <button type="button" class="btn-close btn-close-white" data-mdb-dismiss="modal"
-                        aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-3 text-center">
-                            <i class="fas fa-shopping-cart fa-4x text-info"></i>
-                        </div>
-
-                        <div class="">
-                            <p class="h5">Read the origin story of Mad Libs® from Leonard Stern,
-                                one of the creators of the Original Mad Libs®.</p>
-                            <p>The creation of Mad Libs is directly linked to my inability to spell “hyperbole”
-                                in a
-                                seventh-grade spelling bee. Humiliated and embarrassed beyond words, I ran home
-                                to take
-                                refuge in the family dictionary, determined to learn the correct spelling and
-                                exact
-                                meaning of as many words as humanly possible. The dictionary became my constant
-                                companion – my roommate. Even today it’s by my bedside, and on sleepless nights
-                                I make a
-                                point of learning at least one new word. Last night it was “orthogonal.”</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-info" data-mdb-dismiss="modal">Close</button>
-                </div>
+            <div class="">
+              <p class="h5">
+                Read the origin story of Mad Libs® from Leonard Stern, one of
+                the creators of the Original Mad Libs®.
+              </p>
+              <p>
+                The creation of Mad Libs is directly linked to my inability to
+                spell “hyperbole” in a seventh-grade spelling bee. Humiliated
+                and embarrassed beyond words, I ran home to take refuge in the
+                family dictionary, determined to learn the correct spelling
+                and exact meaning of as many words as humanly possible. The
+                dictionary became my constant companion – my roommate. Even
+                today it’s by my bedside, and on sleepless nights I make a
+                point of learning at least one new word. Last night it was
+                “orthogonal.”
+              </p>
             </div>
+          </div>
         </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-info" data-mdb-dismiss="modal">
+            Close
+          </button>
+        </div>
+      </div>
     </div>
-    <!-- End Modal -->
-    <footer class="bg-light text-center text-lg-start fixed-bottom">
-        <!-- Copyright -->
-        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-            © 2023 Copyright:
-            <a class="text-dark">Onelio Viera</a>
-        </div>
-        <!-- Copyright -->
-    </footer>
+  </div>
+  <!-- End Modal -->
+  <footer class="bg-light text-center text-lg-start fixed-bottom">
+    <!-- Copyright -->
+    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
+      2023 USF Bootcamp:
+      <a class="text-dark" href="#">Onelio Viera</a>
+    </div>
+    <!-- Copyright -->
+  </footer>
 
-
-
-    <script src="/static/mdb.min.js"></script>
+  <script src="/static/mdb.min.js"></script>
 </body>
 
 </html>
